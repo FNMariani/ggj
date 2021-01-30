@@ -1,14 +1,15 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Game/BaseLevel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Game/Argos.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Game/Levels/TestLevel.gd" type="Script" id=3]
+[ext_resource path="res://Game/Enemy2.tscn" type="PackedScene" id=4]
 
 [node name="TestLevel" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
 
 [node name="Player" parent="." index="0"]
-position = Vector2( 860.224, 403.673 )
+position = Vector2( 245.115, 331.835 )
 
 [node name="Argos" parent="Enemies" index="0" instance=ExtResource( 2 )]
 position = Vector2( 231.951, 119.039 )
@@ -19,4 +20,8 @@ autostart = true
 
 [node name="Aim" parent="." index="4"]
 position = Vector2( 727.145, 273.862 )
+
+[node name="Enemy2" parent="." index="5" instance=ExtResource( 4 )]
+position = Vector2( 517.534, 445.288 )
+scale = Vector2( 5, 5 )
 [connection signal="timeout" from="Spawner" to="." method="_on_Spawner_timeout"]

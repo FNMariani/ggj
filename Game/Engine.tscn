@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Assets/engine_anim.png" type="Texture" id=1]
 [ext_resource path="res://Game/Engine.gd" type="Script" id=2]
+[ext_resource path="res://Assets/escudo.png" type="Texture" id=3]
+[ext_resource path="res://Game/Explosion.tscn" type="PackedScene" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "main_anim"
@@ -21,9 +23,14 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 43.2956, 58.5809 )
 
-[node name="Engine" type="StaticBody2D"]
+[sub_resource type="CircleShape2D" id=3]
+radius = 76.2873
+
+[node name="Engine" type="KinematicBody2D"]
 script = ExtResource( 2 )
+shield = 5
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -35,5 +42,38 @@ region_rect = Rect2( 0, 0, 50, 50 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/main_anim = SubResource( 1 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="EngineCollision" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
+
+[node name="ShieldCollision" type="CollisionShape2D" parent="."]
+shape = SubResource( 3 )
+
+[node name="Shield" type="Sprite" parent="."]
+position = Vector2( -3.7458, -5.24408 )
+scale = Vector2( 1.05993, 1.05993 )
+texture = ExtResource( 3 )
+
+[node name="Explosion" parent="." instance=ExtResource( 4 )]
+
+[node name="EnemyCreationTimer" type="Timer" parent="."]
+wait_time = 4.0
+autostart = true
+
+[node name="ShootTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="SpawnPoint" type="Position2D" parent="SpawnPoints"]
+position = Vector2( 1.52588e-05, 126.607 )
+
+[node name="SpawnPoint2" type="Position2D" parent="SpawnPoints"]
+position = Vector2( 144.587, -0.749161 )
+
+[node name="SpawnPoint3" type="Position2D" parent="SpawnPoints"]
+position = Vector2( 0.749161, -120.614 )
+
+[node name="SpawnPoint4" type="Position2D" parent="SpawnPoints"]
+position = Vector2( -119.115, -1.52588e-05 )
+[connection signal="timeout" from="EnemyCreationTimer" to="." method="_on_EnemyCreationTimer_timeout"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]

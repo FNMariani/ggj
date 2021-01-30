@@ -13,9 +13,11 @@ func go_to_next_level():
 	get_tree().change_scene(next_level)
 
 func _physics_process(delta):
-	for enemy in enemies_node.get_children():
-		if enemy.get_node("PathFollow2D").has_node("Argos"):
-			var e = enemy.get_node("PathFollow2D").get_node("Argos")
-			if e:
-				if not e.player_already_saw:
-					enemy.get_node("PathFollow2D").offset += delta*path_speed
+	var a
+
+func _input(event):
+	#Escape for quit
+	if (event is InputEventKey):
+		if(event.is_pressed()):
+			if(event.scancode == KEY_ESCAPE):
+				get_tree().quit() 

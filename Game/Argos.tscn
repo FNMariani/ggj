@@ -13,6 +13,8 @@ extents = Vector2( 143.407, 30.1122 )
 
 [node name="Argos" type="KinematicBody2D"]
 script = ExtResource( 2 )
+health = 1
+delay = 2
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.5, 0.5 )

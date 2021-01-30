@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Game/BaseLevel.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/bloque.png" type="Texture" id=2]
+[ext_resource path="res://Assets/piso.png" type="Texture" id=3]
+[ext_resource path="res://Game/Engine.tscn" type="PackedScene" id=4]
+
+[node name="Floor3" instance=ExtResource( 1 )]
+position = Vector2( 124.451, 31.8198 )
+
+[node name="Floor" type="Polygon2D" parent="." index="0"]
+visible = false
+position = Vector2( 2.51984, 6.72717 )
+texture = ExtResource( 3 )
+polygon = PoolVector2Array( -106.232, -274.429, -113.359, 1507.37, 3564.27, 1521.62, 3542.89, -295.81 )
+
+[node name="Player" parent="." index="1"]
+position = Vector2( 300.902, 88.9032 )
+
+[node name="Camera2D" parent="Player" index="3"]
+position = Vector2( -1.84726, 0.146667 )
+
+[node name="Engine" parent="Enemies" index="0" instance=ExtResource( 4 )]
+position = Vector2( 522.828, 224.756 )
+
+[node name="MainWall" type="StaticBody2D" parent="Walls" index="0" groups=[
+"walls",
+]]
+
+[node name="Wall" type="Polygon2D" parent="Walls/MainWall" index="0"]
+position = Vector2( 0, -3.5636 )
+color = Color( 1, 1, 0.964706, 1 )
+texture = ExtResource( 2 )
+polygon = PoolVector2Array( 2.20593, -5.94447, 136.511, -1.90363, 126.627, 1059.6, 3141.43, 1073.85, 2963.25, 867.162, 2920.87, -13.9167, 3389.03, -7.3096, 3414.3, 1332.67, 7.06934, 1303.88 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/MainWall" index="1"]
+polygon = PoolVector2Array( -3.81559, 0.474777, 4.24268, 1299.54, 3421.43, 1342.26, 3389.4, 7.41736, 2921.83, 3.85552, 2962.25, 851.036, 3129.18, 1069.76, 325.181, 1055.76, 120.23, 1063.05, 138.285, -2.32831 )
+
+[node name="UpWall" type="StaticBody2D" parent="Walls" index="1" groups=[
+"walls",
+]]
+
+[node name="Polygon2D" type="Polygon2D" parent="Walls/UpWall" index="0"]
+texture = ExtResource( 2 )
+polygon = PoolVector2Array( 0.438637, -1.63244, -0.295227, -140.024, 3382.31, -120.996, 3391.82, -6.83258 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/UpWall" index="1"]
+position = Vector2( -7.13525, -11.8921 )
+polygon = PoolVector2Array( -11.7707, -5.45282, 3390.86, 2.54718, 3382.86, -125.453, 0.90097, -117.453 )
